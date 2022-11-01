@@ -11,9 +11,12 @@ public class Types {
 //        short       2 bytes                 –32,768 to 32,767
 //        int         4 bytes                 –2,147,483,648 to 2,147,483,647 (just over 2 billion)
 //        long        8 bytes                 –9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
-        byte b1;
-        b1 = 121;
-        byte b2 = 34;
+        // grammer for declaring variable
+        // type (int, float) [variable name] ?=values;
+        // declare and assign
+        byte b1; // declare a variable
+        b1 = 121; // assign a value
+        byte b2 = 34; // declare and assign
         System.out.println("b1 and b2 values are: " + b1 + " " + b2);
 
         short s1;
@@ -34,6 +37,8 @@ public class Types {
 //        float         4 bytes         Approximately ±3.40282347E+38F (6–7 significant decimal digits)
 //        double        8 bytes         Approximately ±1.79769313486231570E+308 (15 significant decimal digits)
 
+        System.out.println(1234343434.00 * 343434343434.00);
+
         float f1;
         f1 = 12134.00f;
         float f2 = 3344.00f;
@@ -48,14 +53,18 @@ public class Types {
 //        *** Variable Declarations ***
 
 //        old way
+        // type v_name1, v_name2
         int total1 = 0;
         int total2 = 0, count;
 
-//        new way
+        //        new way Java 11
         var total3 = 0;
 
+
+        //d34343
+
 //        *** Identifiers ***
-//        In Java, an identifier must begin with a letter.
+//        In Java, an identifier must begin with a letter, or _, or $.
 //        It can consist of any letters, digits, and the symbols _ and $. However,
 //        the $ symbol is intended for automatically generated identifiers,
 //        and you should not use it. Finally, the _ by itself is not a valid identifier.
@@ -76,6 +85,7 @@ public class Types {
         int age = in.nextInt();
 
 //        *** Constants ***
+        // final type v_name = value
         final int DAYS_PER_WEEK = 7;
 
         final int DAYS_IN_FEBRUARY;
@@ -85,6 +95,7 @@ public class Types {
         } else {
             DAYS_IN_FEBRUARY = 28;
         }
+
 
 //        *** Arithmetic Operations ***
 //        Operators
@@ -103,22 +114,22 @@ public class Types {
 //          ? : (conditional)
 //          = += -= *= /= %= <<= >>= >>>= &= ^= |=
 
-//        *** Number Type Conversions ***
+//        *** Number Type Conversions *** Narrow to wider
 //        3.14 + 42
 //        'J' + 1
 //        double x = 42;
 //        float f = 123456789; // conversions may lose information
 
         // cast
-        double x = 3.75;
-        int n = (int) x;
+        double x = 3.75; // wider
+        int n = (int) x; // narrow
 
         int n1 = 1;
         char next = (char) ('J' + n1); // Converts 75 to 'K'
 
-//        *** Relational and Logical Operators ***
+//        *** Relational (gt, ge, lt, le) and Logical (and, or, not) Operators ***
         int length = 1;
-//        0 <= n && n < length
+//        0 <= n && n < length // cond1 && cond2
         int s = 10;
 //        n != 0 && s + (100 - s) / n < 50  //Short circuit evaluation
 //        n == 0 || s + (100 - s) / n >= 50
@@ -204,8 +215,7 @@ public class Types {
         int numLetters1 = switch (seasonName) { // switch expression with fall-through
             case "Spring":
                 System.out.println("spring time!");
-            case "Summer", "Winter":
-                yield 6;
+            case "Summer", "Winter": yield 6;
             case "Fall":
                 yield 4;
             default:
@@ -230,6 +240,10 @@ public class Types {
             System.out.println(i);
         }
 
+//        1. i = 1, 1 <= 20, execute syatment, i = 2
+//        2. 2 < = 20, execute syatment, i = 3
+
+
         int i = 1;
         while (i <= 20) {
             i++;
@@ -239,10 +253,15 @@ public class Types {
         for (i = 1; i <= 3; i++); // Uses existing variable i
         for (int i3 = 0, j = n - 1; i3 < j; i1++, j--); // initialize multiple variables, multiple updates, separated by commas
 
-        for (;;); // An infinite loop
+
+        for (;;) {
+            if (i > 20)
+                break;
+        }
 
 //        Breaking and Continuing
-//        var done = true;
+        // loop and half
+//        var done = false;
 //        while (!done) {
 //            String input = in.next();
 //            if ("Q".equals(input)) {
@@ -265,14 +284,22 @@ public class Types {
 ////            Process input
 //        }
 
+//        {
+//            {
+//                break;
+//            }
+//        }
+
+
 //        Label break
 //        outer:
 //        while (...) {
 //    ...
+//            inner:
 //            while (...) {
 //        ...
 //                if (...) break outer;
-//       ...
+//       ...      else break inner;
 //            }
 //     ...
 //        }

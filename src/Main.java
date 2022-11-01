@@ -1,14 +1,24 @@
 public class Main {
-    public static void main(String[] args) {
-        // integer, byte (8 bits, 2^8), short (16 bits, 0 to 2^16 ), int (32), long (64)
-        // decimal, float (4 byte), double (8 byte)
-        Double d = 18.90;
-        Float f = 12.34f;
-        System.out.println(12.34f * 12.56);
-        // char, 1 byte 'a', 'b'
-        char letter = 'a';
-        // boolean, true, false
-        boolean b = false;
-        b = true;
+    public void main(String[] args) throws Exception {
+        Employee jay = new Employee("f", "l", 1200.00);
+        jay.getSal();
+        Employee lu = new Employee("", "", 1323.0);
+        Test test = new Test(10);
+        Test1 test1 = new Test1(10);
+        System.out.println(Employee.count);
+        System.out.println(Employee.count);
+
+
     }
+
+    public class Test {
+        private final int x;
+        public Test(int x) {
+            this.x = x;
+        }
+    }
+
+    record Test1(int x) {};
+
+
 }

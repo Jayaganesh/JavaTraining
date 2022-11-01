@@ -10,6 +10,9 @@ public class Arrays {
         // 2
         String[] names1 = new String[100];
 
+
+//        var names2 = new String[100];
+
         for (int i = 0; i < names.length; i++) {
             names[i] = "";
         }
@@ -27,6 +30,8 @@ public class Arrays {
 
         // 2
         int[] primes = { 2, 3, 5, 7, 11, 13 };
+
+//        var primes = new int[]{2, 3, 5, 7, 11, 13};
 
         String[] authors = {
                 "James Gosling",
