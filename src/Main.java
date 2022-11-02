@@ -1,24 +1,22 @@
 public class Main {
-    public void main(String[] args) throws Exception {
-        Employee jay = new Employee("f", "l", 1200.00);
-        jay.getSal();
-        Employee lu = new Employee("", "", 1323.0);
-        Test test = new Test(10);
-        Test1 test1 = new Test1(10);
-        System.out.println(Employee.count);
-        System.out.println(Employee.count);
+    public static void main(String[] args) throws Exception {
+
+//        var list = new List();
+//        list.addItem(3);
+//        list.addItem(4);
+
+//        var myInvoice = new Invoice();
+//        myInvoice.add(new Invoice.Item("Blackwell Toaster", 2, 19.95));
+//        myInvoice.add(new Invoice.Item("Some", 3, 21.00));
+//        myInvoice.display();
 
 
+        var myFace = new Network();
+        Network.Member fred = myFace.enroll("Fred");
+        System.out.println(fred);
+        System.out.println(myFace.members);
+        fred.deactivate();
+        System.out.println(fred);
+        System.out.println(myFace.members);
     }
-
-    public class Test {
-        private final int x;
-        public Test(int x) {
-            this.x = x;
-        }
-    }
-
-    record Test1(int x) {};
-
-
 }
