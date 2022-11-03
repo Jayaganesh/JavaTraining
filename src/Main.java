@@ -1,13 +1,15 @@
+import chapter2.Network;
+
 public class Main {
     public static void main(String[] args) throws Exception {
 
-//        var list = new List();
+//        var list = new chapter2.List();
 //        list.addItem(3);
 //        list.addItem(4);
 
-//        var myInvoice = new Invoice();
-//        myInvoice.add(new Invoice.Item("Blackwell Toaster", 2, 19.95));
-//        myInvoice.add(new Invoice.Item("Some", 3, 21.00));
+//        var myInvoice = new chapter2.Invoice();
+//        myInvoice.add(new chapter2.Invoice.Item("Blackwell Toaster", 2, 19.95));
+//        myInvoice.add(new chapter2.Invoice.Item("Some", 3, 21.00));
 //        myInvoice.display();
 
 
