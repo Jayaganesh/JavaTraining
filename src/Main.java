@@ -13,12 +13,14 @@ public class Main {
 //        myInvoice.display();
 
 
-        var myFace = new Network();
-        Network.Member fred = myFace.enroll("Fred");
-        System.out.println(fred);
-        System.out.println(myFace.members);
-        fred.deactivate();
-        System.out.println(fred);
-        System.out.println(myFace.members);
+//        var myFace = new Network();
+//        Network.Member fred = myFace.enroll("Fred");
+//        System.out.println(fred);
+//        System.out.println(myFace.members);
+//        fred.deactivate();
+//        System.out.println(fred);
+//        System.out.println(myFace.members);
+
+
     }
 }
