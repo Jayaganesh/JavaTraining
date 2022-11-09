@@ -218,6 +218,14 @@ public class Interfaces {
 
 //        *** Lambda Expressions ***
 
+//        new Comparator<String>() {
+//
+//            @Override
+//            public int compare(String first, String second) {
+//                return first.length() - second.length();
+//            }
+//        };
+
 //        (String first, String second) -> first.length() - second.length()
 
 //        (String first, String second) -> {
@@ -229,8 +237,8 @@ public class Interfaces {
 
 //        Runnable task = () -> { for (int i = 0; i < 1000; i++) doWork(); }
 
-//        Comparator<String> comp
-//                = (first, second) -> first.length() - second.length();
+        Comparator<String> comp
+                = (first, second) -> first.length() - second.length();
 //        // Same as (String first, String second)
 //
 //        If a method has a single parameter with inferred type, you can even omit the parentheses
@@ -259,11 +267,16 @@ public class Interfaces {
 
 //        list.forEach(x -> System.out.println(x)); => list.forEach(System.out::println);
 
+        // Math.max(x, y) => Math::max
+
 //        There are three variations:
 //
 //        Class::instanceMethod
 //        Class::staticMethod
 //        object::instanceMethod
+
+        // names.stream().map(x -> new Employee(x));
+        // names.stream().map(x -> new Employee[](x));
 
 //        Constructor References
 //        Stream<Employee> stream = names.stream().map(Employee::new);
@@ -272,10 +285,149 @@ public class Interfaces {
 
 //        *** Processing Lambda Expressions ***
 
+//        repeat(10, () -> System.out.println("some"))
 
+//        FCIS (Functional Core, Imperative Shell)
+
+//        Choosing a Functional Interface
+//        Refer Functional Interface Html
+
+//        Predicate.isEqual(a).or(Predicate.isEqual(b));
+//        x -> a.equals(x) || b.equals(x)
+
+//        Implementing Your Own Functional Interfaces
+
+//        (int, int) -> Color => BiFunction<Integer, Integer, Color>
+
+//        @FunctionalInterface
+//        public interface PixelFunction {
+//            Color apply(int x, int y);
+//        }
+
+//        BufferedImage createImage(int width, int height, PixelFunction f) {
+//            var image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+//
+//            for (int x = 0; x < width; x++)
+//                for (int y = 0; y < height; y++) {
+//                    Color color = f.apply(x, y);
+//                    image.setRGB(x, y, color.getRGB());
+//                }
+//            return image;
+//        }
+//
+//        BufferedImage frenchFlag = createImage(150, 100,
+//                (x, y) -> x < 50 ? Color.BLUE : x < 100 ? Color.WHITE : Color.RED);
+
+//        *** Lambda Expressions and Variable Scope ***
+
+//        1. body of a lambda expression has the same scope as a nested block
+
+//        int first = 0;
+//        Comparator<String> comp1 = (first, second) -> first.length() - second.length();
+        // Error: Variable first already defined
+
+//        2. As another consequence of the “same scope” rule, the this keyword in a lambda expression denotes
+//        the this parameter of the method that creates the lambda.
+
+//        public class Application() {
+//            public void doWork() {
+//                Runnable runner = () -> { ...; System.out.println(this.toString()); ... };
+//        ...
+//            }
+//        }
+
+//        Accessing Variables from the Enclosing Scope
+
+
+//        Free variables
+
+//        public static void repeatMessage(String text, int count) {
+//            Runnable r = () -> {
+//                for (int i = 0; i < count; i++) {
+//                    System.out.println(text);
+//                }
+//            };
+//            new
+
+//        for (int i = 0; i < n; i++) {
+//            new Thread(() -> System.out.println(i)).start();
+//            // Error—cannot capture i
+//        }
+
+//        for (String arg : args) {
+//            new Thread(() -> System.out.println(arg)).start();
+//            // OK to capture arg
+//        }
+
+//        public static void repeatMessage(String text, int count, int threads) {
+//            Runnable r = () -> {
+//                while (count > 0) {
+//                    count--; // Error: Can't mutate captured variable
+//                    System.out.println(text);
+//                }
+//            };
+//            for (int i = 0; i < threads; i++) new Thread(r).start();
+//        }
+
+//        *** Higher-Order Functions ***
+
+//        Methods that Return Functions
+
+        compareInDirection(1);
+        compareInDirection(-1);
+
+        Arrays.sort(names, compareInDirection(-1));
+
+        reverse(String::compareToIgnoreCase);
+        Arrays.sort(names, reverse(String::compareToIgnoreCase));
+
+//        Comparator Methods
+
+//        Arrays.sort(people, Comparator.comparing(Person::getLastName));
+
+//        Arrays.sort(people, Comparator
+//                .comparing(Person::getLastName)
+//                .thenComparing(Person::getFirstName));
+
+//        Arrays.sort(people, Comparator.comparing(Person::getLastName,
+//                (s, t) -> s.length() - t.length()));
+
+//        Arrays.sort(people, Comparator.comparingInt(p -> p.getLastName().length()));
+
+//        Arrays.sort(people, comparing(Person::getMiddleName,
+//                nullsFirst(naturalOrder())));
+
+//        *** Local and Anonymous Classes ***
+
+//        private static RandomGenerator generator = RandomGenerator.getDefault();
+//
+//        public static IntSequence randomInts(int low, int high) {
+//            class RandomSequence implements IntSequence {
+//                public int next() { return low + generator.nextInt(high - low + 1); }
+//                public boolean hasNext() { return true; }
+//            }
+//
+//            return new RandomSequence();
+//        }
+
+//        public static IntSequence randomInts(int low, int high) {
+//            return new IntSequence() {
+//                public int next() { return low + generator.nextInt(high - low + 1); }
+//                public boolean hasNext() { return true; }
+//            }
+//        }
 
     }
 
+    private static Comparator<String> compareInDirection(int direction) {
+        return (x, y) -> direction * x.compareTo(y);
+    }
+
+    private static Comparator<String> reverse(Comparator<String> comp) {
+        return (x, y) -> comp.compare(y, x);
+    }
 
 
 }
+
+
