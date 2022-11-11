@@ -264,6 +264,8 @@ public class Inheritance {
 //        cloneOfFred.raiseSalary(10); // fred unchanged
 
 //        *** Enumerations ***
+        var price = new Pricing();
+        price.price(123.00, Size.SMALL);
 
         enum Size { SMALL, MEDIUM, LARGE, EXTRA_LARGE };
 
@@ -272,6 +274,11 @@ public class Inheritance {
         Size[] allValues = Size.values();
 
         for (Size s : Size.values()) { System.out.println(s); }
+
+
+        enum Planet {
+            MERCURY, EARTH
+        }
 
 //        Constructors, Methods, and Fields
 
@@ -286,6 +293,8 @@ public class Inheritance {
 
             public String getAbbreviation() { return abbreviation; }
         }
+
+        System.out.println(Size1.SMALL.getAbbreviation());
 
 //        Bodies of Instances
 
@@ -305,6 +314,8 @@ public class Inheritance {
 
             public abstract int eval(int arg1, int arg2);
         }
+
+        System.out.println(Operation.ADD.eval(1, 2));
 
 //        Static Members
 
@@ -346,7 +357,9 @@ public class Inheritance {
 //            }
 //        }
 
-//        The Class Class
+//        Reflection
+
+        System.out.println(price.getClass());
 
 //        Class<?> cl = obj.getClass();
 
