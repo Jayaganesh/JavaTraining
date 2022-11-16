@@ -1,6 +1,6 @@
 package chapter2;
 
-public class List {
+public class List<I extends Number> {
     private Node head = null;
 
     public List() {

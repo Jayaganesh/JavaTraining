@@ -43,6 +43,7 @@ public class Exception {
 //        try {
 //            file.write("sdsds");
 //        } catch (IOException e) {
+//            logger.info("There is an error in method Read() {0}", e)
 //            throw new RuntimeException(e);
 //        }
 
@@ -249,6 +250,7 @@ public class Exception {
 
 //        *** Assertions ***
 
+
 //        Using Assertions
 
 //        assert condition;
@@ -259,14 +261,17 @@ public class Exception {
 
 //        Enabling and Disabling Assertions
 
-//        java -ea MainClass
+//        java -da MainClass
 
 //        *** Logging ***
 
         // logging basics
 
+        //        log.info("sdskjd");
 
-    randInt(30, 4);
+//        debug, info, warning, error, critical
+
+        randInt(30, 4);
 
     }
 
