@@ -98,12 +98,14 @@ public class Collections {
 
 //        System.out.println(counts);
 
-        int count = counts.get("Alice");
-//        int count = counts.getOrDefault("Alice", 0);
+//        int count = counts.get("Alice");
+        int count = counts.getOrDefault("Alice", 0);
 
         counts.merge("Alice", 1, Integer::sum);
         counts.merge("Bob", 1, Integer::sum);
-//        System.out.println(counts);
+        System.out.println(counts);
+
+
 
 
 //        Map<K, V> Methods
@@ -140,10 +142,99 @@ public class Collections {
 
 //        System.out.println(System.getProperties());
 
+
+        byte[] bool = {0, 0, 0, 0}; // 4 bits, 32 bits
 //        Bit Sets
 
+//        Methods of the BitSet Class
+
+//        https://docs.oracle.com/javase/8/docs/api/java/util/BitSet.html
+
+
+//        Enumeration Sets and Maps
+
+        enum Weekday {MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY}
+        ;
+        Set<Weekday> always = EnumSet.allOf(Weekday.class);
+        System.out.println(always);
+        Set<Weekday> never = EnumSet.noneOf(Weekday.class);
+        System.out.println(never);
+        Set<Weekday> workday = EnumSet.range(Weekday.MONDAY, Weekday.FRIDAY);
+        System.out.println(workday);
+        Set<Weekday> mwf = EnumSet.of(Weekday.MONDAY, Weekday.WEDNESDAY, Weekday.FRIDAY);
+        System.out.println(mwf);
+
+        var personInCharge = new EnumMap<Weekday, String>(Weekday.class);
+        personInCharge.put(Weekday.MONDAY, "Fred");
+        System.out.println(personInCharge);
+        System.out.println(personInCharge.get(Weekday.THURSDAY));
+
+//        Stacks, Queues, Deques, and Priority Queues
+
+
+        var stack = new ArrayDeque<String>();
+        stack.push("Peter");
+        stack.push("Paul");
+        stack.push("Mary");
+        while (!stack.isEmpty())
+            System.out.println(stack.pop());
+
+        Queue<String> queue = new ArrayDeque<>();
+        queue.add("Peter");
+        queue.add("Paul");
+        queue.add("Mary");
+        while (!queue.isEmpty())
+            System.out.println(queue.remove());
+
+
+        record Job(int priority, String description) implements Comparable<Job> {
+
+            @Override
+            public int compareTo(Job o) {
+                if (this.priority > o.priority) {
+                    return -1;
+                } else if (this.priority < o.priority) {
+
+                    return 1;
+                } else
+                    return 0;
+            }
+
+
+            @Override
+            public String toString() {
+                return "Job{" +
+                        "priority=" + priority +
+                        ", description='" + description + '\'' +
+                        '}';
+            }
+        }
+
+        var jobs = new PriorityQueue<Job>();
+        jobs.add(new Job(4, "Collect garbage"));
+        jobs.add(new Job(9, "Match braces"));
+        jobs.add(new Job(1, "Fix memory leak"));
+
+        while (jobs.size() > 0) {
+            Job job = jobs.remove(); // The most urgent jobs are removed first
+            System.out.println(job);
+        }
+
+        var a = 12;
+
+        var a1 = a;
+
+//        parent -> child
+//        child  -> parent
 
     }
+
+//    Weak Hash Maps
+
+    // Weak reference
+
+
+
 
 
 }
