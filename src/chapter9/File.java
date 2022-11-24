@@ -10,6 +10,9 @@ import java.util.List;
 
 public class File {
     public static void main(String[] args) throws IOException {
+//        Files
+//        Path
+
 //        *** Input/Output Streams, Readers, and Writers ***
 
 //        Read and Write using Streams
@@ -19,7 +22,7 @@ public class File {
 
         int data = in.read();
         while(data != -1) {
-            System.out.println((char) data);
+//            System.out.println((char) data);
             data = in.read();
         }
         in.close();
@@ -29,18 +32,18 @@ public class File {
         var url = new URL("https://jenkov.com/tutorials/java-io/inputstream.html");
         InputStream in1 = url.openStream();
         byte[] bytes = in1.readAllBytes();
-        System.out.println(Arrays.toString(bytes));
+//        System.out.println(Arrays.toString(bytes));
 
 //        Read and Write using Byte Array Streams
 
         byte[] bytes1 = {123, 121};
         var in2 = new ByteArrayInputStream(bytes1);
-        System.out.println(Arrays.toString(in2.readAllBytes()));
+//        System.out.println(Arrays.toString(in2.readAllBytes()));
 
         var out1 = new ByteArrayOutputStream();
         out1.writeBytes(new byte[]{121, 120});
         byte[] bytes2 = out1.toByteArray();
-        System.out.println(Arrays.toString(bytes2));
+//        System.out.println(Arrays.toString(bytes2));
 
 //        Reading Bytes
 
@@ -90,19 +93,73 @@ public class File {
         BufferedReader is = new BufferedReader(new FileReader(fileName));
         String line;
         while ((line = is.readLine()) != null) {
-            System.out.println(line);
+//            System.out.println(line);
         }
         is.close();
 
+//        System.out.println("The old-fashioned way");
+//        BufferedReader is = Files.newBufferedReader(Path.of(fileName));
+//        String line;
+//        while ((line = is.readLine()) != null) {
+////            System.out.println(line);
+//        }
+//        is.close();
+
         System.out.println("The old-fashioned way");
         BufferedWriter os = new BufferedWriter(new FileWriter("sample1.txt"));
+//        BufferedWriter os1 = new BufferedWriter("sample1.txt");
         os.write("write");
         os.close();
+
+//        Files.newBufferedReader
+//        Files.newBufferedWriter
+
+        InputStream in3 = Files.newInputStream(Path.of("sample.txt"));
+
+        InputStreamReader input = new InputStreamReader(in3);
+
+        char[] array = new char[100];
+        input.read(array);
+        System.out.println("Input stream reader");
+        System.out.println(array);
+
+        input.close();
+
+
+//        Random-Access Files
+
+        var file = new RandomAccessFile("sample.txt", "rw");
+
+        int value = file.readInt();
+        file.seek(file.getFilePointer() - 4);
+        file.writeInt(value + 1);
+
+//        Memory-Mapped Files
+
+//        FileChannel channel = FileChannel.open(path,
+//                StandardOpenOption.READ, StandardOpenOption.WRITE)
+
+
+//        ByteBuffer buffer = channel.map(FileChannel.MapMode.READ_WRITE,
+//                0, channel.size());
+
+
+//        File Locking
+
+//        FileChannel channel = FileChannel.open(path, StandardOpenOption.WRITE);
+//        FileLock lock = channel.lock();
+
+//        FileLock lock = channel.tryLock();
+
+//        try (FileLock lock = channel.lock()) {
+//    ...
+//        }
 
 
 
 //        *** Paths, Files, and Directories ***
 //        Paths
+
 
         Path absolute = Path.of("/", "home", "jg");
         Path relative = Path.of("myapp", "conf", "user.properties");
@@ -124,10 +181,10 @@ public class File {
 //        Files.createDirectory(Path.of("jg"));
 //        Files.createFile(Path.of("test.txt);
 
-//        Files.exists()
+//        Files.exists(Path.of("test.txt))
 
-//        Files.isDirectory()
-//        Files.isRegularFile()
+//        Files.isDirectory(Path.of("test.txt))
+//        Files.isRegularFile(Path.of("test.txt))
 
 //        Path tempFile = Files.createTempFile(dir, prefix, suffix);
 //        Path tempFile = Files.createTempFile(prefix, suffix);
@@ -150,7 +207,7 @@ public class File {
 
 //        ZIP File Systems
 
-        FileSystem zipfs = FileSystems.newFileSystem(Path.of("zipname.zip"));
+//        FileSystem zipfs = FileSystems.newFileSystem(Path.of("zipname.zip"));
 
 //        Files.copy(zipfs.getPath(sourceName), targetPath);
 
@@ -167,16 +224,12 @@ public class File {
 //            Files.copy(sourcePath, zipfs.getPath("/").resolve(targetPath));
 //        }
 
-//        File Locking
 
-        FileChannel channel = FileChannel.open(Path.of("sample.txt"), StandardOpenOption.WRITE);
-        FileLock lock = channel.lock();
-
-//        FileLock lock = channel.tryLock();
-
-//        try (FileLock lock = channel.lock()) {
-//
-//        }
+//        Files.lines(Path.of("sample.txt") => Stream<String>
+//        Files.readAllLines(Path.of("sample.txt")) => List<String>
+//        Files.list(Path.of("JG")) => Stream<Path>
+//        Files.walk(Path.of("sample.txt")) =>
+//        Files.find()
 
 
 

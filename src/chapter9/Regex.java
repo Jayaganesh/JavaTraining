@@ -9,7 +9,7 @@ public class Regex {
     public static void main(String[] args) {
 //        Testing a Match
         String regex = "[+-]?\\d+";
-        String input = "+233";
+        String input = "+233dfdfdf";
         if (Pattern.matches(regex, input)) {
             System.out.println("match");
         }
@@ -56,10 +56,37 @@ public class Regex {
 //        Blackwell Toaster    USD29.95
 //        (\p{Alnum}+(\s+\p{Alnum}+)*)\s+([A-Z]{3})([0-9.]*)
 
-        Pattern pattern2 = Pattern.compile("(\\p{Alnum}+(\\s+\\p{Alnum}+)*)\\s+([A-Z]{3})([0-9.]*)");
-        Matcher matcher2 = pattern2.matcher("Blackwell Toaster    USD29.95");
-        String contents = matcher2.group();
-        System.out.println(contents);
+//        Pattern pattern = Pattern.compile(([A-Z]{3})[0-9.]*);
+
+//        Pattern pattern2 = Pattern.compile("(\\p{Alnum}+(\\s+\\p{Alnum}+)*)\\s+([A-Z]{3})([0-9.]*)");
+//        Matcher matcher2 = pattern2.matcher("Blackwell Toaster    USD29.95");
+//        String contents = matcher2.group(1);
+
+//        (?<item>\p{Alnum}+(\s+\p{Alnum}+)*)\s+(?<currency>[A-Z]{3})(?<price>[0-9.]*)
+
+//        item = matcher.group("item");
+
+//        Splitting along Delimiters
+//
+//        String input = ...;
+//        Pattern commas = Pattern.compile("\\s*,\\s*");
+//        String[] tokens = commas.split(input);
+        // "1, 2, 3" turns into ["1", "2", "3"]
+
+//        Stream<String> tokens = commas.splitAsStream(input);
+
+//        Replacing Matches
+
+        Pattern commas = Pattern.compile("([A-Z]{3})[0-9.]*");
+
+
+        Matcher matcher4 = commas.matcher("USD9.00");
+        String result = matcher4.replaceAll("EUR");
+        System.out.println(result);
+
+//        String result = input.replaceAll("\\s*,\\s*", ",");
+
+
 
     }
 
